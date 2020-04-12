@@ -2,23 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Note.css'
+import './Vote.css'
 
-export default function Note(props) {
+export default function Vote(props) {
   return (
-    <div className='Note'>
-      <h2 className='Note__title'>
-        <Link to={`/note/${props.id}`}>
+    <div className='Vote'>
+      <h2 className='Vote__title'>
+        <Link to={`/vote/${props.id}`}>
           {props.name}
         </Link>
       </h2>
-      <button className='Note__delete' type='button'>
-        <FontAwesomeIcon icon='trash-alt' />
-        {' '}
-        remove
-      </button>
-      <div className='Note__dates'>
-        <div className='Note__dates-modified'>
+      <div className='Vote__dates'>
+        <div className='Vote__dates-modified'>
           Modified
           {' '}
           <span className='Date'>

@@ -10,7 +10,7 @@ export default class AddVote extends Component {
     const {AddVote } = this.props
     return (
       <section className='AddVote'>
-        <h2>Create a vote</h2>
+        <h2>Vote for your favorite</h2>
         <AnimalPicture>
           <div className='field'>
             <label htmlFor='vote-name-input'>

@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import NoteListNav from '../NoteListNav/NoteListNav'
-import NotePageNav from '../NotePageNav/NotePageNav'
-import NoteListMain from '../NoteListMain/NoteListMain'
-import NotePageMain from '../NotePageMain/NotePageMain'
-import AddFolder from '../AddFolder/AddFolder'
-import AddNote from '../AddNote/AddNote'
+
 import dummyStore from '../dummy-store'
-import { getNotesForFolder, findNote, findFolder } from '../notes-helpers'
 import './App.css'
 
 class App extends Component {
   state = {
-    notes: [],
-    folders: [],
+   pictues: [],
+    votes: [],
   };
 
   componentDidMount() {
@@ -23,94 +17,94 @@ class App extends Component {
   }
 
   renderNavRoutes() {
-    const { notes, folders } = this.state
+    const { votes, pictues } = this.state
     return (
       <>
-        {['/', '/folder/:folderId'].map(path =>
+        {['/', '/pictures/picturesId'].map(path =>
           <Route
             exact
             key={path}
             path={path}
             render={routeProps =>
-              <NoteListNav
-                folders={folders}
-                notes={notes}
+              <PicturesNav
+                pictues={pictues}
+                votes={votes}
                 {...routeProps}
               />
             }
           />
         )}
         <Route
-          path='/note/:noteId'
+          path='/votes/:voteId'
           render={routeProps => {
-            const { noteId } = routeProps.match.params
-            const note = findNote(notes, noteId) || {}
-            const folder = findFolder(folders, note.folderId)
+            const { voteId } = routeProps.match.params
+            const vote = findVote(votes, voteId) || {}
+            const folder = findPicture(Pictures, vote.pictureId)
             return (
-              <NotePageNav
+              <PageNav
                 {...routeProps}
-                folder={folder}
+                pictures={pictures}
               />
             )
           }}
         />
         <Route
-          path='/add-folder'
-          component={NotePageNav}
+          path='/add-picture'
+          component={PageNav}
         />
         <Route
-          path='/add-note'
-          component={NotePageNav}
+          path='/add-vote'
+          component={PageNav}
         />
       </>
     )
   }
 
   renderMainRoutes() {
-    const { notes, folders } = this.state
+    const { votes, pictues } = this.state
     return (
       <>
-        {['/', '/folder/:folderId'].map(path =>
+        {['/', '/pictures/:pictureId'].map(path =>
           <Route
             exact
             key={path}
             path={path}
             render={routeProps => {
-              const { folderId } = routeProps.match.params
-              const notesForFolder = getNotesForFolder(notes, folderId)
+              const { pictureId } = routeProps.match.params
+              const votesForPicturer = getVotesForPicture(votes, pictureId)
               return (
-                <NoteListMain
+                <VoteListMain
                   {...routeProps}
-                  notes={notesForFolder}
+                  votes={votesForPicturer}
                 />
               )
             }}
           />
         )}
         <Route
-          path='/note/:noteId'
+          path='/vote/:voteId'
           render={routeProps => {
-            const { noteId } = routeProps.match.params
-            const note = findNote(notes, noteId)
+            const { voteId } = routeProps.match.params
+            const vote = findVote(votes, voteId)
             return (
-              <NotePageMain
+              <PageMain
                 {...routeProps}
-                note={note}
+                vote={vote}
               />
             )
           }}
         />
         <Route
-          path='/add-folder'
-          component={AddFolder}
+          path='/add-picture'
+          component={AddPicture}
         />
         <Route
-          path='/add-note'
+          path='/add-vote'
           render={routeProps => {
             return (
-              <AddNote
+              <AddVote
                 {...routeProps}
-                folders={folders}
+                pictures={pictures}
               />
             )
           }}
@@ -127,7 +121,7 @@ class App extends Component {
         </nav>
         <header className='App__header'>
           <h1>
-            <Link to='/'>Noteful</Link>
+            <Link to='/'>Animal Voting Capstone</Link>
             {' '}
             <FontAwesomeIcon icon='check-double' />
           </h1>
