@@ -2,18 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Vote.css'
+import './Name.css'
 
-export default function Vote(props) {
+export default function Name(props) {
   return (
-    <div className='Vote'>
-      <h2 className='Vote__title'>
-        <Link to={`/vote/${props.id}`}>
+    <div className='Name'>
+      <h2 className='Name_title'>
+        <Link to={`/namee/${props.id}`}>
           {props.name}
         </Link>
       </h2>
-      <div className='Vote__dates'>
-        <div className='Vote__dates-modified'>
+      <div className='Name__dates'>
+        <div className='Name__dates-modified'>
           Modified
           {' '}
           <span className='Date'>

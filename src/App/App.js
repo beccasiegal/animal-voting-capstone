@@ -7,8 +7,8 @@ import './App.css'
 
 class App extends Component {
   state = {
-   pictues: [],
-    votes: [],
+   animals: [],
+    names: [],
   };
 
   componentDidMount() {
@@ -17,43 +17,43 @@ class App extends Component {
   }
 
   renderNavRoutes() {
-    const { votes, pictues } = this.state
+    const { animals, names } = this.state
     return (
       <>
-        {['/', '/pictures/picturesId'].map(path =>
+        {['/', '/animals/animalsid'].map(path =>
           <Route
             exact
             key={path}
             path={path}
             render={routeProps =>
               <PicturesNav
-                pictues={pictues}
-                votes={votes}
+                animals={animals}
+                names={names}
                 {...routeProps}
               />
             }
           />
         )}
         <Route
-          path='/votes/:voteId'
+          path='/names/:animalId'
           render={routeProps => {
-            const { voteId } = routeProps.match.params
-            const vote = findVote(votes, voteId) || {}
-            const folder = findPicture(Pictures, vote.pictureId)
+            const { animalId } = routeProps.match.params
+            const name = findName(name, animalId) || {}
+            const animal = findAnimal(animal, animal_id)
             return (
               <PageNav
                 {...routeProps}
-                pictures={pictures}
+                animal={animal}
               />
             )
           }}
         />
         <Route
-          path='/add-picture'
+          path='/add-animal'
           component={PageNav}
         />
         <Route
-          path='/add-vote'
+          path='/add-name'
           component={PageNav}
         />
       </>
@@ -61,31 +61,31 @@ class App extends Component {
   }
 
   renderMainRoutes() {
-    const { votes, pictues } = this.state
+    const { name, animal } = this.state
     return (
       <>
-        {['/', '/pictures/:pictureId'].map(path =>
+        {['/', '/animals/:animalId'].map(path =>
           <Route
             exact
             key={path}
             path={path}
             render={routeProps => {
-              const { pictureId } = routeProps.match.params
-              const votesForPicturer = getVotesForPicture(votes, pictureId)
+              const { animalId } = routeProps.match.params
+              const  = getVotesForAnimal(votes, name_Id)
               return (
                 <VoteListMain
                   {...routeProps}
-                  votes={votesForPicturer}
+                  votes={votesForAnimal}
                 />
               )
             }}
           />
         )}
         <Route
-          path='/vote/:voteId'
+          path='/names/:name_Id'
           render={routeProps => {
-            const { voteId } = routeProps.match.params
-            const vote = findVote(votes, voteId)
+            const { name_Id } = routeProps.match.params
+            const vote = findVote(votes, name_Id)
             return (
               <PageMain
                 {...routeProps}
@@ -95,16 +95,16 @@ class App extends Component {
           }}
         />
         <Route
-          path='/add-picture'
-          component={AddPicture}
+          path='/add-animal'
+          component={AddAnimal}
         />
         <Route
-          path='/add-vote'
+          path='/add-name'
           render={routeProps => {
             return (
               <AddVote
                 {...routeProps}
-                pictures={pictures}
+                animals={animals}
               />
             )
           }}
@@ -121,7 +121,7 @@ class App extends Component {
         </nav>
         <header className='App__header'>
           <h1>
-            <Link to='/'>Animal Voting Capstone</Link>
+            <Link to='/'>Animal Naming and Voting</Link>
             {' '}
             <FontAwesomeIcon icon='check-double' />
           </h1>

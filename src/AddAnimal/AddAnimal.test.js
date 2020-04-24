@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import AddPicture from './AddPicture'
+import AddAnimal from './AddAnimal'
 
 describe(`AddItemForm component`, () => {
   it('renders the complete form', () => {
-    const wrapper = shallow(<AddPicture />)
+    const wrapper = shallow(<AddAnimal />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })
 })

@@ -1,11 +1,11 @@
 import React from 'react'
-import './AnimalPictures.css'
+import './Animals.css'
 
-export default function AnimalPictures(props) {
+export default function Animals(props) {
   const { className, ...otherProps } = props
   return (
     <form
-      className={['Animal-Pictures', className].join(' ')}
+      className={['Animals', className].join(' ')}
       action='#'
       {...otherProps}
     />
