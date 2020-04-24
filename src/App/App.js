@@ -71,7 +71,7 @@ class App extends Component {
             path={path}
             render={routeProps => {
               const { animalId } = routeProps.match.params
-              const  = getVotesForAnimal(votes, name_Id)
+              const votes = getVotesForAnimal(votes, name_Id)
               return (
                 <VoteListMain
                   {...routeProps}
