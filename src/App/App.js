@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import AddAnimal from '../AddAnimal/AddAnimal'
+import AddName from '../AddName/AddName'
+import dummyStore from '../dummy-store'
+import config from '../config'
+import './App.css'
 import dummyStore from '../dummy-store'
 import './App.css'
 
