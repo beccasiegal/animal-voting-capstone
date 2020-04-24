@@ -30,7 +30,7 @@ class App extends Component {
             key={path}
             path={path}
             render={routeProps =>
-              <PicturesNav
+              <Animals
                 animals={animals}
                 names={names}
                 {...routeProps}
@@ -45,7 +45,7 @@ class App extends Component {
             const name = findName(name, animalId) || {}
             const animal = findAnimal(animal, animal_id)
             return (
-              <PageNav
+              <Animals
                 {...routeProps}
                 animal={animal}
               />
@@ -54,11 +54,11 @@ class App extends Component {
         />
         <Route
           path='/add-animal'
-          component={PageNav}
+          component={Animals}
         />
         <Route
           path='/add-name'
-          component={PageNav}
+          component={Names}
         />
       </>
     )
@@ -77,7 +77,7 @@ class App extends Component {
               const { animalId } = routeProps.match.params
               const  votes = (votes, name_Id)
               return (
-                <VoteListMain
+                <Names
                   {...routeProps}
                   votes={votesForAnimal}
                 />
@@ -91,7 +91,7 @@ class App extends Component {
             const { name_Id } = routeProps.match.params
             const vote = findVote(votes, name_Id)
             return (
-              <PageMain
+              <Names
                 {...routeProps}
                 vote={vote}
               />
@@ -106,7 +106,7 @@ class App extends Component {
           path='/add-name'
           render={routeProps => {
             return (
-              <AddVote
+              <AddName
                 {...routeProps}
                 animals={animals}
               />
