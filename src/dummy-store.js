@@ -17,5 +17,4 @@ export default {
       "url": "https://imgur.com/a/nQQxTP5",
     },
 
-  ],
- 
+  ];
