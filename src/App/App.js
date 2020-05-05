@@ -5,9 +5,9 @@ import AddAnimal from '../AddAnimal/AddAnimal'
 import AddName from '../AddName/AddName'
 import dummyStore from '../dummy-store'
 import config from '../config'
+import names-helper from '../names-helper'
 import './App.css'
-import dummyStore from '../dummy-store'
-import './App.css'
+
 
 class App extends Component {
   state = {
@@ -17,8 +17,35 @@ class App extends Component {
 
   componentDidMount() {
     // fake date loading from API call
-    setTimeout(() => this.setState(dummyStore), 600)
+    fetch(`${config.API_ENDPOINT}/names`)
+      .then(res => {
+        if(!res.ok) {
+          throw new Error('Something went wrong, please try again later');
+        }
+        return res.json();
+      })
+      .then(names => {
+        this.setState({names});
+            })
+            .then (()=> {
+              return (fetch(`${config.API_ENDPOINT}/animals`))
+            })
+            .then(res => {
+              if(!res.ok) {
+                throw new Error('Something went wrong, please try again later');
+              }
+              return res.json();
+            })
+            .then (animals =>{
+              this.setState({animals})
+            })
+      .catch(err => {
+        this.setState({
+          error: err.message
+        });
+      });
   }
+  
 
   renderNavRoutes() {
     const { animals, names } = this.state
